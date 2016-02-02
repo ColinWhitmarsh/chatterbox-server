@@ -32,44 +32,29 @@ exports.requestHandler = function(request, response) {
 
   var storage = {};
   // The outgoing status.
-  var statusCode = 404;
+  var statusCode;
 
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
-
+  headers['Content-Type'] = "application/JSON";     
   var message = {results:[]};
 
-  //var urlStringified = '' + request.url;
-
-  // Tell the client we are sending them plain text.
-  //
-  // You will need to change this if you are sending something
-  // other than plain text, like JSON or HTML.
-  if(request.method === 'GET') {
-    statusCode = 200;
-    console.log('GET REQWIUHEIUEQWFHIUFEW');
-    if(request.url.substring(0,8) === '/classes') {
-      console.log('cheap pass of equlity');
-      headers['Content-Type'] = "application/JSON";
-    } else {
-      headers['Content-Type'] = "text/plain";
-      console.log("we failed equality");
+  if(request.url.substring(0,8) === '/classes') {
+    if(request.method === 'GET') {
+      statusCode = 200;
+      response.writeHead(statusCode, headers);
+      response.end(JSON.stringify(message));
+    } else if (request.method === 'POST') {
+      statusCode = 201;
+      response.writeHead(statusCode, headers);
+      response.end();
     }
-    response.writeHead(statusCode, headers);
-    response.end(JSON.stringify(message));
-  } else if(request.method === 'POST'){
-
-    statusCode = 201;  
-    console.log('POST request heard');
-
-    // if(request.url === '/send') {
-      headers['Content-Type'] = "application/JSON";
-    // } else {
-
-    // }
-    response.writeHead(statusCode, headers);
-    response.end();
+  } else if (request.url) {
+    //do something else
+  } else {
+    statusCode = 404; 
   }
+
 };
 
 // These headers will allow Cross-Origin Resource Sharing (CORS).
