@@ -11,7 +11,11 @@ this file and include it in basic-server.js so that it actually works.
 *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
 
 **************************************************************/
-var storage = {};
+var objectId = 0;
+var message = {results:[{username:"Jono",message:"Do my bidding!", roomname: 'lobby', objectId: 'asdf'}]};
+//{results:[{"username":"Jono","message":"Do my bidding!"}]} 
+//expect(messages[0].username).to.equal('Jono');
+
 
 exports.requestHandler = function(request, response) {
   // Request and Response come from node's http module.
@@ -36,33 +40,45 @@ exports.requestHandler = function(request, response) {
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
   headers['Content-Type'] = "application/JSON";     
-  var message = {results:[]}; //{results:[{"username":"Jono","message":"Do my bidding!"}]} 
-  //expect(messages[0].username).to.equal('Jono');
-
-
+  
   if(request.url.substring(0,8) === '/classes') {
     if(request.method === 'GET') {
       statusCode = 200;
       response.writeHead(statusCode, headers);
-      console.log(storage);
-      message.results.push(storage[0]);
+      // message.results.push(storage[0]);
       //console.log(message.results);
       response.end(JSON.stringify(message)); //message
     } else if (request.method === 'POST') {
       statusCode = 201;
-      request.on('data', function (chunk) { storage[0] = JSON.parse(chunk); } ); //{"username":"Jono","message":"Do my bidding!"}
+      request.on('data', function (chunk) { 
+        var data = JSON.parse(chunk);
+        data.objectId = objectId++;
+        message.results.push(data); } ); //{"username":"Jono","message":"Do my bidding!"}
+      response.writeHead(statusCode, headers);
+      response.end();
+    } else if (request.method === 'OPTIONS') {
+      statusCode = 200;
       response.writeHead(statusCode, headers);
       response.end();
     }
-  } else if (request.url) {
+  } 
+  else if (request.url) {
     //if the url is truthy but not /classes, do something else
-    statusCode = 404; 
-    response.writeHead(statusCode, headers);
-    response.end();
+    if (request.method === 'OPTIONS') {
+      statusCode = 200;
+      response.writeHead(statusCode, headers);
+      response.end();
+    }
   } else { //if the url is just messed up
-    statusCode = 404; 
-    response.writeHead(statusCode, headers);
-    response.end();
+    if (request.method === 'OPTIONS') {
+      statusCode = 200;
+      response.writeHead(statusCode, headers);
+      response.end();
+    } else {
+      statusCode = 404;
+      response.writeHead(statusCode, headers);
+      response.end();
+    }
   }
 
 };
