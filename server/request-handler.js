@@ -11,7 +11,10 @@ this file and include it in basic-server.js so that it actually works.
 *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
 
 **************************************************************/
-var objectId = 0;
+var fs = require("fs");
+
+
+var objectId = 1;
 var message = {results:[{
   username:'Jonoasdasdsa',
   text: 'Do my bidding!', 
@@ -51,13 +54,25 @@ exports.requestHandler = function(request, response) {
       response.writeHead(statusCode, headers);
       // message.results.push(storage[0]);
       //console.log(message.results);
-      response.end(JSON.stringify(message)); //message
+      
+      fs.readFile(__dirname + '/storage.txt', 'utf8', function(err, data) {
+          if(err) {
+            throw err;
+          }
+          var responseAttempt = data.substr(0,data.length-2)+']}';
+          console.log(responseAttempt);
+          response.end(responseAttempt); //message
+
+      });
+
     } else if (request.method === 'POST') {
       statusCode = 201;
       request.on('data', function (chunk) { 
         var data = JSON.parse(chunk);
         data.objectId = objectId++;
-        message.results.push(data); } ); //{"username":"Jono","message":"Do my bidding!"}
+        fs.appendFile('./server/storage.txt', JSON.stringify(data, null, 2) + ", ", 'utf-8');
+        message.results.push(data); 
+      }); 
       response.writeHead(statusCode, headers);
       response.end();
     } else if (request.method === 'OPTIONS') {
