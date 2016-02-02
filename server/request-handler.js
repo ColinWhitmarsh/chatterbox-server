@@ -50,9 +50,14 @@ exports.requestHandler = function(request, response) {
       response.end();
     }
   } else if (request.url) {
-    //do something else
-  } else {
+    //if the url is truthy but not /classes, do something else
     statusCode = 404; 
+    response.writeHead(statusCode, headers);
+    response.end();
+  } else { //if the url is just messed up
+    statusCode = 404; 
+    response.writeHead(statusCode, headers);
+    response.end();
   }
 
 };
