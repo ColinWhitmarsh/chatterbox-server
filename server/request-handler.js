@@ -11,7 +11,7 @@ this file and include it in basic-server.js so that it actually works.
 *Hint* Check out the node module documentation at http://nodejs.org/api/modules.html.
 
 **************************************************************/
-
+var storage = {};
 
 exports.requestHandler = function(request, response) {
   // Request and Response come from node's http module.
@@ -30,22 +30,27 @@ exports.requestHandler = function(request, response) {
   // console.logs in your code.
   console.log("Serving request type " + request.method + " for url " + request.url);
 
-  var storage = {};
   // The outgoing status.
   var statusCode;
 
   // See the note below about CORS headers.
   var headers = defaultCorsHeaders;
   headers['Content-Type'] = "application/JSON";     
-  var message = {results:[]};
+  var message = {results:[]}; //{results:[{"username":"Jono","message":"Do my bidding!"}]} 
+  //expect(messages[0].username).to.equal('Jono');
+
 
   if(request.url.substring(0,8) === '/classes') {
     if(request.method === 'GET') {
       statusCode = 200;
       response.writeHead(statusCode, headers);
-      response.end(JSON.stringify(message));
+      console.log(storage);
+      message.results.push(storage[0]);
+      //console.log(message.results);
+      response.end(JSON.stringify(message)); //message
     } else if (request.method === 'POST') {
       statusCode = 201;
+      request.on('data', function (chunk) { storage[0] = JSON.parse(chunk); } ); //{"username":"Jono","message":"Do my bidding!"}
       response.writeHead(statusCode, headers);
       response.end();
     }
