@@ -12,7 +12,11 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
 var objectId = 0;
-var message = {results:[{username:"Jono",message:"Do my bidding!", roomname: 'lobby', objectId: 'asdf'}]};
+var message = {results:[{
+  username:'Jonoasdasdsa',
+  text: 'Do my bidding!', 
+  roomname: 'lobby',
+}]};
 //{results:[{"username":"Jono","message":"Do my bidding!"}]} 
 //expect(messages[0].username).to.equal('Jono');
 
@@ -64,7 +68,11 @@ exports.requestHandler = function(request, response) {
   } 
   else if (request.url) {
     //if the url is truthy but not /classes, do something else
-    if (request.method === 'OPTIONS') {
+    if (request.method === 'GET') {
+      statusCode = 404;
+      response.writeHead(statusCode, headers);
+      response.end();
+    } else if (request.method === 'OPTIONS') {
       statusCode = 200;
       response.writeHead(statusCode, headers);
       response.end();
