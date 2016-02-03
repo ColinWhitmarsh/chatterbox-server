@@ -4,123 +4,58 @@
   "roomname": "lobby",
   "objectID": 0
 }, {
-  "username": "jack",
-  "text": "dsadsa",
+  "username": "colin",
+  "text": "fsad",
   "roomname": "lobby",
-  "objectId": 11
+  "objectId": 1
 }, {
-  "username": "jack",
-  "text": "dsadasdasasd",
+  "username": "colin",
+  "text": "asdsa",
   "roomname": "lobby",
-  "objectId": 12
+  "objectId": 1
 }, {
-  "username": "jack",
+  "username": "colin",
   "text": "asdasd",
   "roomname": "lobby",
-  "objectId": 13
-}, {
-  "username": "jack",
-  "text": "sad",
-  "roomname": "lobby",
-  "objectId": 14
-}, {
-  "username": "jack",
-  "text": "ads",
-  "roomname": "lobby",
-  "objectId": 15
-}, {
-  "username": "jack",
-  "text": "dsaasdasdasdasdasd",
-  "roomname": "lobby",
-  "objectId": 16
-}, {
-  "username": "jack",
-  "text": "dasdsa",
-  "roomname": "lobby",
-  "objectId": 17
-}, {
-  "username": "jack",
-  "text": "sadsaddas",
-  "roomname": "lobby",
-  "objectId": 18
-}, {
-  "username": "jack",
-  "text": "o'lantern",
-  "roomname": "lobby",
-  "objectId": 19
-}, {
-  "username": "jack",
-  "text": "and the bean stock",
-  "roomname": "lobby",
-  "objectId": 20
-}, {
-  "username": "jack",
-  "text": "and jill",
-  "roomname": "lobby",
-  "objectId": 21
-}, {
-  "username": "jack",
-  "text": "the knife",
-  "roomname": "lobby",
-  "objectId": 22
-}, {
-  "username": "jack",
-  "text": "hammer",
-  "roomname": "lobby",
-  "objectId": 23
-}, {
-  "username": "jack",
-  "text": "a$$",
-  "roomname": "lobby",
-  "objectId": 24
-}, {
-  "username": "jack",
-  "text": "asdsadasd",
-  "roomname": "lobby",
-  "objectId": 25
-}, {
-  "username": "jack",
-  "text": "asdasdsa",
-  "roomname": "lobby",
-  "objectId": 1
-}, {
-  "username": "jack",
-  "text": "bam",
-  "roomname": "lobby",
   "objectId": 2
 }, {
-  "username": "jack",
-  "text": "fdsa",
-  "roomname": "lobby",
-  "objectId": 1
-}, {
-  "username": "jack",
-  "text": "asdf",
-  "roomname": "lobby",
-  "objectId": 2
-}, {
-  "username": "jack",
-  "text": "fdsa",
+  "username": "colin",
+  "text": "asdsaadsa",
   "roomname": "lobby",
   "objectId": 3
 }, {
   "username": "colin",
-  "text": "asdsadsdassa",
+  "text": "do we need http",
+  "roomname": "lobby",
+  "objectId": 4
+}, {
+  "username": "colin",
+  "text": "nah",
+  "roomname": "lobby",
+  "objectId": 5
+}, {
+  "username": "colin",
+  "text": "will it work",
   "roomname": "lobby",
   "objectId": 1
 }, {
   "username": "colin",
-  "text": "asdasdasd",
+  "text": "yes",
   "roomname": "lobby",
   "objectId": 2
 }, {
   "username": "colin",
-  "text": "sdfsdf",
+  "text": "still working?",
   "roomname": "lobby",
   "objectId": 1
 }, {
   "username": "colin",
-  "text": "that worked",
+  "text": "yessss",
   "roomname": "lobby",
   "objectId": 2
+}, {
+  "username": "zuckerberg",
+  "text": "i cant post",
+  "roomname": "lobby",
+  "objectId": 1
 }, 

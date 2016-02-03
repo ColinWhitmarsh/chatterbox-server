@@ -35,7 +35,7 @@ exports.requestHandler = function(request, response) {
       request.on('data', function (chunk) { 
         var data = JSON.parse(chunk);
         data.objectId = objectId++;
-        fs.appendFile('./server/storage.txt', JSON.stringify(data, null, 2) + ", ", 'utf-8');
+        fs.appendFile(__dirname + '/storage.txt', JSON.stringify(data, null, 2) + ", ", 'utf-8');
       }); 
       statusCode = 201;
       response.writeHead(statusCode, headers);
