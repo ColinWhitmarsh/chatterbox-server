@@ -1,4 +1,5 @@
 var fs = require("fs");
+var path = require("path");
 
 var objectId = 1;
 
@@ -41,6 +42,16 @@ exports.requestHandler = function(request, response) {
       response.writeHead(statusCode, headers);
       response.end();
     } 
+  } else if (request.url.substring(0,11) === '/env/config') {
+    if(request.method === 'GET') {
+      fs.readFile(path.join(__dirname, '../client/env/config.js'), 'utf8',function(err, data){
+        if (err) {
+          throw err;
+        }
+        statusCode = 201;
+        response.end(data);
+      })
+    }
   } else { //if the url is just messed up
     statusCode = 404;
     response.writeHead(statusCode, headers);
