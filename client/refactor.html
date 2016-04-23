@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="env/config.js"></script>
+    <script src="scripts/refactor.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <h1>chatter<em>box</em></h1>
+      <div class="spinner"><img src="images/spiffygif_46x46.gif"></div>
+      <form action="#" id="send" method="post">
+        <input type="text" name="message" id="message"/>
+        <input type="submit" name="submit" class="submit"/>
+      </form>
+    </div>
+    <div id="chats"></div>
+    <script>
+      $(function(){
+        var runBackboneSolution = false;
+
+        if (runBackboneSolution) {
+          console.log('Running Backbone Version...');
+          var messages     = new Messages();
+          var formView     = new FormView(    {el: $('#main'),  collection: messages});
+          var messagesView = new MessagesView({el: $('#chats'), collection: messages});
+          setInterval(messages.loadMsgs.bind(messages), 1000);
+          messages.loadMsgs();
+        } else {
+          console.log('Running jQuery Version...');
+          app.init();
+        }
+      });
+    </script>
+  </body>
+</html>
