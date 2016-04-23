@@ -1,8 +1,4 @@
-
 var app = {
-
-  //TODO: The current 'addFriend' function just adds the class 'friend'
-  //to all messages sent by the user
   server: 'http://127.0.0.1:3000/classes',
   username: 'anonymous',
   roomname: 'lobby',
@@ -237,4 +233,3 @@ var app = {
     $('form input[type=submit]').attr('disabled', null);
   }
 };
-
